@@ -71,8 +71,9 @@ class BookingController extends Controller
         if ($booking->user_id !== Auth::id()) {
             abort(403);
         }
-        $booking->delete();
+        $booking->update(['status' => 'cancelled']);
+
         return redirect()->route('bookings.index')
-                         ->with('success', 'Booking imefutwa.');
+                         ->with('success', 'Booking imeghairiwa.');
     }
 }
