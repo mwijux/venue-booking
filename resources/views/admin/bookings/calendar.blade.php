@@ -5,9 +5,9 @@
 <div style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;">
     <div>
         <h1 style="font-size: 24px; font-weight: 700; color: var(--text-primary); margin: 0;">Booking Calendar</h1>
-        <p style="color: var(--text-secondary); font-size: 14px; margin-top: 5px;">Angalia bookings zote kwenye kalenda.</p>
+        <p style="color: var(--text-secondary); font-size: 14px; margin-top: 5px;">View all bookings on the calendar.</p>
     </div>
-    <a href="{{ route('admin.bookings.index') }}" class="btn btn-primary btn-lg">← Rudi kwa List</a>
+    <a href="{{ route('admin.bookings.index') }}" class="btn btn-primary btn-lg">← Return to List</a>
 </div>
 
 <div class="table-card">

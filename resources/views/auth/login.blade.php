@@ -80,7 +80,7 @@
 
                     <!-- Submit Button -->
                     <button type="submit" class="auth-btn">
-                        🔓 login
+                         Login
                     </button>
                 </form>
             </div>
@@ -88,8 +88,8 @@
             <!-- Footer -->
             <div class="auth-footer">
                 <p class="auth-footer-text">
-                    Huna akaunti? 
-                    <a href="{{ route('register') }}" class="auth-footer-link">Jisajili hapa</a>
+                    Idont have account? 
+                    <a href="{{ route('register') }}" class="auth-footer-link">Register here</a>
                 </p>
             </div>
 

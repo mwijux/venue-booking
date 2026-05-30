@@ -216,32 +216,32 @@
         <ul class="sidebar-menu">
             <li>
                 <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                    <span class="menu-icon">🏠</span> Dashboard
+                    <span class="menu-icon"></span> Dashboard
                 </a>
             </li>
             <li>
                 <a href="{{ route('admin.venues.create') }}" class="{{ request()->routeIs('admin.venues.create') ? 'active' : '' }}">
-                    <span class="menu-icon">🏢</span> Add Venue
+                    <span class="menu-icon"></span> Add Venue
                 </a>
             </li>
             <li>
                 <a href="{{ route('admin.venues.index') }}" class="{{ request()->routeIs('admin.venues.index') ? 'active' : '' }}">
-                    <span class="menu-icon">📋</span> Manage Venues
+                    <span class="menu-icon"></span> Manage Venues
                 </a>
             </li>
             <li>
                 <a href="{{ route('admin.bookings.index') }}" class="{{ request()->routeIs('admin.bookings.*') ? 'active' : '' }}">
-                    <span class="menu-icon">📅</span> Manage Bookings
+                    <span class="menu-icon"></span> Manage Bookings
                 </a>
             </li>
             <li>
                 <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                    <span class="menu-icon">👥</span> Manage Users
+                    <span class="menu-icon"></span> Manage Users
                 </a>
             </li>
             <li>
                 <a href="{{ route('admin.bookings.calendar') }}" class="{{ request()->routeIs('admin.bookings.calendar') ? 'active' : '' }}">
-                    <span class="menu-icon">🗓️</span> Calendar
+                    <span class="menu-icon"></span> Calendar
                 </a>
             </li>
         </ul>

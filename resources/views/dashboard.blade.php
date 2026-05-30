@@ -4,7 +4,7 @@
 
 @if(session('status'))
     <div style="background: #e8f5e9; border-left: 4px solid #2e7d32; color: #2e7d32; padding: 12px 18px; border-radius: 0 8px 8px 0; margin-bottom: 20px; font-weight: 500;">
-        ✅ {{ session('status') }}
+         {{ session('status') }}
     </div>
 @endif
 
@@ -23,7 +23,7 @@
          onclick="window.location='{{ route('bookings.create') }}'">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
             <div style="width: 50px; height: 50px; border-radius: 12px; background: #eff6ff; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                📅
+                
             </div>
         </div>
         <h3 style="font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 6px;">Book Venue</h3>
@@ -37,7 +37,7 @@
          onclick="window.location='{{ route('bookings.index') }}'">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
             <div style="width: 50px; height: 50px; border-radius: 12px; background: #eef2ff; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                📋
+                
             </div>
         </div>
         <h3 style="font-size: 16px; font-weight: 700; color: #1e1b4b; margin-bottom: 6px;"> My Booking</h3>

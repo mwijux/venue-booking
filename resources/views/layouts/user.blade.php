@@ -26,17 +26,17 @@
         <ul class="sidebar-menu">
             <li>
                 <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <span class="menu-icon">🏠</span> Dashboard
+                    <span class="menu-icon"></span> Dashboard
                 </a>
             </li>
             <li>
                 <a href="{{ route('bookings.create') }}" class="{{ request()->routeIs('bookings.create') ? 'active' : '' }}">
-                    <span class="menu-icon">📅</span> Book Venue
+                    <span class="menu-icon"></span> Book Venue
                 </a>
             </li>
             <li>
                 <a href="{{ route('bookings.index') }}" class="{{ request()->routeIs('bookings.index') ? 'active' : '' }}">
-                    <span class="menu-icon">📋</span> My Bookings
+                    <span class="menu-icon"></span> My Bookings
                 </a>
             </li>
         </ul>

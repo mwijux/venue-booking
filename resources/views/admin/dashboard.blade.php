@@ -16,7 +16,7 @@
          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)';">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
             <div style="width: 50px; height: 50px; border-radius: 12px; background: #eef2ff; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                👥
+                
             </div>
             <span style="font-size: 28px; font-weight: 800; color: #4f46e5;">{{ $stats['total_users'] }}</span>
         </div>
@@ -32,7 +32,7 @@
          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)';">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
             <div style="width: 50px; height: 50px; border-radius: 12px; background: #fdf2f8; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                🏢
+                
             </div>
             <span style="font-size: 28px; font-weight: 800; color: #000000;">{{ $stats['total_venues'] }}</span>
         </div>
@@ -48,7 +48,7 @@
          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)';">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
             <div style="width: 50px; height: 50px; border-radius: 12px; background: #ecfdf5; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                📅
+                
             </div>
             <span style="font-size: 28px; font-weight: 800; color: #059669;">{{ $stats['total_bookings'] }}</span>
         </div>
@@ -64,7 +64,7 @@
              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)';">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
                 <div style="width: 50px; height: 50px; border-radius: 12px; background: #fff7ed; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                    ⏳
+                    
                 </div>
                 <span style="font-size: 28px; font-weight: 800; color: #ea580c;">{{ $stats['pending_guests'] }}</span>
             </div>
@@ -85,7 +85,7 @@
          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)';">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
             <div style="width: 50px; height: 50px; border-radius: 12px; background: #eff6ff; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                ✅
+                
             </div>
             <span style="font-size: 28px; font-weight: 800; color: #2563eb;">{{ $stats['today_bookings'] }}</span>
         </div>

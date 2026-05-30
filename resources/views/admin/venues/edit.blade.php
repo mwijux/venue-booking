@@ -3,8 +3,8 @@
 @section('content')
 
 <div style="margin-bottom: 25px;">
-    <h1 style="font-size: 24px; font-weight: 700; color: var(--text-primary); margin: 0;">Hariri Venue: {{ $venue->name }}</h1>
-    <p style="color: var(--text-secondary); font-size: 14px; margin-top: 5px;">Badilisha taarifa za venue hii.</p>
+    <h1 style="font-size: 24px; font-weight: 700; color: var(--text-primary); margin: 0;">Edit Venue: {{ $venue->name }}</h1>
+    <p style="color: var(--text-secondary); font-size: 14px; margin-top: 5px;">Edit the details of this venue.</p>
 </div>
 
 <div class="table-card" style="max-width: 700px;">
@@ -14,7 +14,7 @@
             @method('PUT')
 
             <div class="form-group">
-                <label>Jina la Venue</label>
+                <label>Venue Name</label>
                 <input type="text" name="name" value="{{ old('name', $venue->name) }}" class="form-control" required>
                 @error('name')
                     <p style="color: var(--btn-danger); font-size: 12px; margin-top: 4px;">{{ $message }}</p>
@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-group">
-                <label>Mahali (Location)</label>
+                <label>Location</label>
                 <input type="text" name="location" value="{{ old('location', $venue->location) }}" class="form-control" required>
                 @error('location')
                     <p style="color: var(--btn-danger); font-size: 12px; margin-top: 4px;">{{ $message }}</p>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="form-group">
-                <label>Uwezo (Capacity)</label>
+                <label>Capacity</label>
                 <input type="number" name="capacity" value="{{ old('capacity', $venue->capacity) }}" class="form-control" min="1" required>
                 @error('capacity')
                     <p style="color: var(--btn-danger); font-size: 12px; margin-top: 4px;">{{ $message }}</p>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="form-group">
-                <label>Maelezo (Description)</label>
+                <label>Description</label>
                 <textarea name="description" class="form-control" rows="4">{{ old('description', $venue->description) }}</textarea>
                 @error('description')
                     <p style="color: var(--btn-danger); font-size: 12px; margin-top: 4px;">{{ $message }}</p>
@@ -49,13 +49,13 @@
                 <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                     <input type="checkbox" name="is_active" value="1" {{ $venue->is_active ? 'checked' : '' }}
                            style="width: 18px; height: 18px; accent-color: var(--btn-primary);">
-                    <span style="font-size: 14px;">Venue inatumika (Active)</span>
+                    <span style="font-size: 14px;">Active</span>
                 </label>
             </div>
 
             <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
-                <a href="{{ route('admin.venues.index') }}" class="btn btn-outline btn-lg">Ghairi</a>
-                <button type="submit" class="btn btn-warning btn-lg">Hifadhi Mabadiliko</button>
+                <a href="{{ route('admin.venues.index') }}" class="btn btn-outline btn-lg">Cancel</a>
+                <button type="submit" class="btn btn-warning btn-lg">Save Changes</button>
             </div>
         </form>
     </div>

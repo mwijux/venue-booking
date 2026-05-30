@@ -22,7 +22,7 @@
         <div style="display: flex; gap: 10px; align-items: center;">
             <a href="{{ route('admin.exports.venues', 'csv') }}" class="btn btn-success">⬇ CSV</a>
             <a href="{{ route('admin.exports.venues', 'pdf') }}" class="btn btn-danger">⬇ PDF</a>
-            <a href="{{ route('admin.venues.create') }}" class="btn btn-primary btn-lg">+ Ongeza Venue</a>
+            <a href="{{ route('admin.venues.create') }}" class="btn btn-primary btn-lg">+ Add Venue</a>
         </div>
     </div>
 
@@ -31,11 +31,11 @@
         <thead>
             <tr>
                 <th>S/N</th>
-                <th>Jina la Venue</th>
-                <th>Mahali</th>
-                <th>Uwezo</th>
-                <th>Maelezo</th>
-                <th>Hali</th>
+                <th>Venue Name</th>
+                <th>Location</th>
+                <th>Capacity</th>
+                <th>Description</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -45,8 +45,8 @@
                 <td>{{ $loop->iteration }}</td>
                 <td style="font-weight: 600;">{{ $venue->name }}</td>
                 <td>{{ $venue->location }}</td>
-                <td>{{ $venue->capacity }} watu</td>
-                <td>{{ Str::limit($venue->description ?? 'Hakuna maelezo', 25) }}</td>
+                <td>{{ $venue->capacity }} people</td>
+                <td>{{ Str::limit($venue->description ?? 'No description available', 25) }}</td>
                 <td>
                     @if($venue->is_active)
                         <span class="badge badge-active">Active</span>
@@ -59,7 +59,7 @@
                         <a href="{{ route('admin.venues.show', $venue) }}" class="btn btn-info">View</a>
                         <a href="{{ route('admin.venues.edit', $venue) }}" class="btn btn-edit">Edit</a>
                         <form action="{{ route('admin.venues.destroy', $venue) }}" method="POST" style="display:inline;"
-                              onsubmit="return confirm('Una uhakika unataka kufuta venue hii?')">
+                              onsubmit="return confirm('are you sure you want to delete this venue?')">
                             @csrf @method('DELETE')
                             <button type="submit" class="btn btn-delete">Delete</button>
                         </form>
@@ -69,7 +69,7 @@
             @empty
             <tr>
                 <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-secondary);">
-                    Hakuna venues zilizoongezwa bado.
+                    NO registered venues.
                 </td>
             </tr>
             @endforelse
