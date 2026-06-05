@@ -86,7 +86,7 @@
             @empty
             <tr>
                 <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-secondary);">
-                    Hakuna watumiaji waliopatikana.
+                    No users found.
                 </td>
             </tr>
             @endforelse

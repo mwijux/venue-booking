@@ -4,7 +4,7 @@ A modern, full-featured **Online Venue Booking System** built with **Laravel 11*
 
 ![Laravel](https://img.shields.io/badge/Laravel-11-red?style=flat-square&logo=laravel)
 ![PHP](https://img.shields.io/badge/PHP-8.3-blue?style=flat-square&logo=php)
-![MySQL](https://img.shields.io/badge/MySQL-Database-orange?style=flat-square&logo=mysql)
+![Mysql](https://img.shields.io/badge/Mysql-Database-orange?style=flat-square&logo=mysql)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-Styling-06B6D4?style=flat-square&logo=tailwindcss)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
@@ -272,7 +272,7 @@ CSS
     --sidebar-hover: #1b3a4b;     /* Hover effect */
 }
 ### Database Schema
-Users Table
+### Users Table
 Column	Type	Description
 id	bigint	Primary key
 first_name	string	User's first name (Title Case)
@@ -286,7 +286,8 @@ staff_id	string (nullable, unique)	Lecturer staff ID
 organisation	string (nullable)	Guest's organisation name
 status	enum	active, pending
 timestamps		created_at, updated_at
-Venues Table
+
+### Venues Table
 Column	Type	Description
 id	bigint	Primary key
 name	string	Venue name
@@ -295,7 +296,8 @@ capacity	integer	Maximum capacity
 description	text (nullable)	Venue description
 is_active	boolean	Whether venue is available
 timestamps		created_at, updated_at
-Bookings Table
+
+### Bookings Table
 Column	Type	Description
 id	bigint	Primary key
 user_id	foreignId	References users table
@@ -398,7 +400,8 @@ For Guests (External Users)
 Register - Select "Guest" role and enter your organisation
 Wait for Approval - Admin must approve your account
 Login - Once approved, login and book venues
-For Admins
+
+### For Admins
 Login - Use admin credentials
 Dashboard - View system statistics
 Manage Users - Approve guests, suspend or delete users
@@ -452,7 +455,6 @@ Contributions are welcome! Here's how:
 
 ### Author
 Antidius Mwijage
-
     @-GitHub: @mwijux
     @-Email: mwijux@gmail.com
 

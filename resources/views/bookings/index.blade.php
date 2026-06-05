@@ -55,7 +55,7 @@
                     <div style="display: flex; gap: 5px; align-items: center;">
                         @if($booking->status === 'confirmed')
                             <form action="{{ route('bookings.destroy', $booking) }}" method="POST" style="display:inline;"
-                                  onsubmit="return confirm('Una uhakika unataka kufuta booking hii?')">
+                                  onsubmit="return confirm('WARNING! Are you sure you want to cancel this booking?')">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-delete">Cancel</button>
                             </form>
@@ -69,7 +69,7 @@
             <tr>
                 <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-secondary);">
                     <div>
-                        <p style="font-size: 40px; margin-bottom: 10px;">📅</p>
+                        <p style="font-size: 40px; margin-bottom: 10px;">icon</p>
                         <p style="font-weight: 600; font-size: 16px; margin-bottom: 5px;">You haven't made any bookings yet.</p>
                         <p style="font-size: 13px;">Click the "Book New Venue" button to get started..</p>
                     </div>

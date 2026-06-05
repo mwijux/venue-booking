@@ -6,68 +6,59 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'VenueBook') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="user-body">
+<body>
+    <div class="app-shell">
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-    {{-- Sidebar Overlay --}}
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-
-    {{-- Sidebar --}}
-    <aside class="sidebar-user" id="sidebar">
-        <div class="sidebar-brand">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 80px; margin-bottom: 1px;"><p>Venue Booking System</p>
-        
-        </div>
-
-        <ul class="sidebar-menu">
-            <li>
-                <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <span class="menu-icon"></span> Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('bookings.create') }}" class="{{ request()->routeIs('bookings.create') ? 'active' : '' }}">
-                    <span class="menu-icon"></span> Book Venue
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('bookings.index') }}" class="{{ request()->routeIs('bookings.index') ? 'active' : '' }}">
-                    <span class="menu-icon"></span> My Bookings
-                </a>
-            </li>
-        </ul>
-    </aside>
-
-    {{-- Main Content --}}
-    <div class="main-wrapper" id="mainWrapper">
-        {{-- Top Bar --}}
-        <div class="user-top-bar">
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <button class="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Sidebar">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-                <span class="welcome-text">Hi, {{ Auth::user()->first_name }}!</span>
+        <aside class="sidebar-user" id="sidebar">
+            <div class="sidebar-brand">
+                <img src="{{ asset('images/logo.png') }}" alt="VenueBook Logo" class="brand-logo">
+                <div class="brand-caption">Venue Booking System</div>
             </div>
 
-            <div style="display: flex; align-items: center;">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                        <x-icon name="home" /> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('bookings.create') }}" class="{{ request()->routeIs('bookings.create') ? 'active' : '' }}">
+                        <x-icon name="calendar" /> Book Venue
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('bookings.index') }}" class="{{ request()->routeIs('bookings.index') || request()->routeIs('bookings.show') ? 'active' : '' }}">
+                        <x-icon name="clipboard" /> My Bookings
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-wrapper" id="mainWrapper">
+            <div class="user-top-bar">
+                <div class="top-bar-group">
+                    <button class="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar" type="button">
+                        <x-icon name="menu" />
+                    </button>
+                    <span class="welcome-text">Hi, {{ Auth::user()->first_name }}!</span>
+                </div>
+
                 <div class="user-dropdown" id="userDropdown">
-                    <button class="user-dropdown-btn" onclick="toggleUserDropdown()">
+                    <button class="user-dropdown-btn" onclick="toggleUserDropdown()" type="button">
                         <div class="user-avatar">
                             {{ strtoupper(substr(Auth::user()->first_name, 0, 1)) }}{{ strtoupper(substr(Auth::user()->last_name, 0, 1)) }}
                         </div>
-                        <div style="text-align: left; line-height: 1.3;">
-                            <div style="font-weight: 600; font-size: 13px;">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</div>
-                            <div style="font-size: 11px; color: #888;">{{ ucfirst(Auth::user()->role) }}</div>
+                        <div class="user-meta">
+                            <div class="user-meta-name">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</div>
+                            <div class="user-meta-role">{{ Auth::user()->role }}</div>
                         </div>
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="opacity: 0.5;">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                        <x-icon name="chevron-down" class="icon-sm" />
                     </button>
 
                     <div class="user-dropdown-menu" id="userDropdownMenu">
@@ -78,10 +69,7 @@
                         </div>
 
                         <a href="{{ route('profile.edit') }}">
-                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                            </svg>
-                            My Profile
+                            <x-icon name="user" /> My Profile
                         </a>
 
                         <div class="dropdown-divider"></div>
@@ -89,24 +77,19 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="logout-btn">
-                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-                                </svg>
-                                Logout
+                                <x-icon name="logout" /> Logout
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
 
-        {{-- Page Content --}}
-        <div class="user-content-area">
-            @yield('content')
-        </div>
+            <div class="user-content-area">
+                @yield('content')
+            </div>
+        </main>
     </div>
 
-    {{-- JavaScript --}}
     <script>
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
@@ -123,13 +106,13 @@
         }
 
         function toggleUserDropdown() {
-            var menu = document.getElementById('userDropdownMenu');
-            menu.classList.toggle('show');
+            document.getElementById('userDropdownMenu').classList.toggle('show');
         }
 
         document.addEventListener('click', function(event) {
             var dropdown = document.getElementById('userDropdown');
             var menu = document.getElementById('userDropdownMenu');
+
             if (dropdown && !dropdown.contains(event.target)) {
                 menu.classList.remove('show');
             }
@@ -142,6 +125,5 @@
             }
         });
     </script>
-
 </body>
 </html>

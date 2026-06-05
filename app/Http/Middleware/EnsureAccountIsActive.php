@@ -21,7 +21,7 @@ class EnsureAccountIsActive
             $request->session()->regenerateToken();
             
             return redirect()->route('login')
-                ->with('status', 'Akaunti yako inasubiri approval ya Admin. Tafadhali subiri.');
+                ->with('status', 'Your account is waiting for admin approval. Please try again later.');
         }
 
         return $next($request);

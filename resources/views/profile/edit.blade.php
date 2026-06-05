@@ -131,10 +131,10 @@
         </div>
     </div>
 
-    {{-- SEHEMU 3: Badilisha Password --}}
+    {{-- SEHEMU 3: Change Password --}}
     <div class="table-card">
         <div style="padding: 18px 24px; border-bottom: 1px solid #eee;">
-            <h3 style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0;">Badilisha Password</h3>
+            <h3 style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0;">Change Password</h3>
         </div>
         <div style="padding: 25px;">
             <form method="POST" action="{{ route('password.update') }}">
@@ -142,8 +142,8 @@
                 @method('put')
 
                 <div class="form-group">
-                    <label>Password ya Sasa</label>
-                    <input type="password" name="current_password" class="form-control" placeholder="Ingiza password ya sasa" required>
+                    <label>Current Password</label>
+                    <input type="password" name="current_password" class="form-control" placeholder="Enter current password" required>
                     @error('current_password', 'updatePassword')
                         <p style="color: #c62828; font-size: 12px; margin-top: 4px;">{{ $message }}</p>
                     @enderror
@@ -151,15 +151,15 @@
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div class="form-group">
-                        <label>Password Mpya</label>
-                        <input type="password" name="password" class="form-control" placeholder="Ingiza password mpya" required>
+                        <label>New Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Enter new password" required>
                         @error('password', 'updatePassword')
                             <p style="color: #c62828; font-size: 12px; margin-top: 4px;">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Thibitisha Password Mpya</label>
-                        <input type="password" name="password_confirmation" class="form-control" placeholder="Rudia password mpya" required>
+                        <label>Confirm New Password</label>
+                        <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm new password" required>
                     </div>
                 </div>
 
@@ -170,7 +170,7 @@
         </div>
     </div>
 
-    {{-- SEHEMU 4: Futa Akaunti (User wa kawaida tu) --}}
+    {{-- SEHEMU 4: Delete Account ( Normal User) --}}
     @if(auth()->user()->role !== 'admin')
     <div class="table-card" style="border: 1px solid #ffcdd2;">
         <div style="padding: 18px 24px; border-bottom: 1px solid #ffcdd2; background: #fff5f5;">
@@ -178,23 +178,23 @@
         </div>
         <div style="padding: 25px;">
             <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
-                Ukifuta akaunti yako, data zako zote zitapotea na <strong>hazitaweza kurejeshwa</strong>.
+                If you delete your account, all your data will be lost and <strong>they cannot be recovered</strong>.
             </p>
 
-            <form method="POST" action="{{ route('profile.destroy') }}" onsubmit="return confirm('TAHADHARI! Una uhakika unataka kufuta akaunti yako?')">
+            <form method="POST" action="{{ route('profile.destroy') }}" onsubmit="return confirm('WARNING! Are you sure you want to delete your account?')">
                 @csrf
                 @method('delete')
 
                 <div class="form-group">
-                    <label style="color: #c62828;">Ingiza password yako kuthibitisha</label>
-                    <input type="password" name="password" class="form-control" style="border-color: #ffcdd2; max-width: 400px;" placeholder="Password yako" required>
+                    <label style="color: #c62828;">Enter your password to confirm</label>
+                    <input type="password" name="password" class="form-control" style="border-color: #ffcdd2; max-width: 400px;" placeholder="Your password" required>
                     @error('password', 'userDeletion')
                         <p style="color: #c62828; font-size: 12px; margin-top: 4px;">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div style="margin-top: 15px;">
-                    <button type="submit" class="btn btn-danger btn-lg">Futa Akaunti Yangu</button>
+                    <button type="submit" class="btn btn-danger btn-lg">Delete My Account</button>
                 </div>
             </form>
         </div>

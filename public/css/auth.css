@@ -1,496 +1,367 @@
-/* ============================================
-   VENUE BOOKING SYSTEM - AUTH PAGES STYLES
-   (Login, Register, Forgot Password)
-   ============================================
-   Kubadilisha rangi, badilisha variables 
-   hapa chini kwenye :root section.
-   ============================================ */
-
+/* =========================================================
+   Auth Design Tokens
+   Login, registration, and password recovery pages.
+   ========================================================= */
 :root {
-    /* === RANGI ZA AUTH PAGES === */
-    --auth-bg: #f0f2f5;                    /* Background ya page nzima */
-    --auth-primary: #1a237e;               /* Rangi kuu (buttons, links) */
-    --auth-primary-hover: #283593;         /* Hover ya rangi kuu */
-    --auth-primary-light: #e8eaf6;         /* Background nyepesi ya rangi kuu */
-    --auth-gradient: linear-gradient(135deg, #1a237e 0%, #283593 50%, #1565c0 100%); /* Gradient */
-
-    /* === CARD === */
-    --auth-card-bg: #ffffff;               /* Background ya card/form */
-    --auth-card-shadow: 0 10px 40px rgba(0,0,0,0.08); /* Shadow ya card */
-    --auth-card-radius: 16px;              /* Border radius ya card */
-
-    /* === FORM ELEMENTS === */
-    --auth-input-border: #d0d5dd;          /* Border ya input */
-    --auth-input-focus: #1a237e;           /* Border focus ya input */
-    --auth-input-bg: #ffffff;              /* Background ya input */
-    --auth-input-radius: 8px;              /* Border radius ya input */
-    --auth-label-color: #344054;           /* Rangi ya label */
-    --auth-placeholder: #98a2b3;           /* Rangi ya placeholder */
-
-    /* === MAANDISHI === */
-    --auth-text-dark: #1d2939;             /* Maandishi meusi */
-    --auth-text-medium: #475467;           /* Maandishi ya kati */
-    --auth-text-light: #667085;            /* Maandishi mepesi */
-    --auth-error: #dc2626;                 /* Rangi ya error */
-
-    /* === BUTTON === */
-    --auth-btn-bg: #1a237e;                /* Background ya button kuu */
-    --auth-btn-hover: #283593;             /* Hover ya button kuu */
-    --auth-btn-text: #ffffff;              /* Maandishi ya button */
-    --auth-btn-radius: 8px;                /* Border radius ya button */
-
-    /* === FONTS === */
-    --auth-font: 'Figtree', 'Segoe UI', sans-serif;
+    --auth-bg: #f6f8fb;
+    --auth-surface: #ffffff;
+    --auth-border: #e5e7eb;
+    --auth-text: #172033;
+    --auth-muted: #667085;
+    --auth-primary: #1d4ed8;
+    --auth-primary-dark: #12377f;
+    --auth-primary-soft: #e8f0ff;
+    --auth-danger: #b91c1c;
+    --auth-success: #15803d;
+    --auth-info: #0369a1;
+    --auth-font: "Figtree", "Segoe UI", Arial, sans-serif;
+    --auth-radius: 10px;
+    --auth-shadow: 0 18px 44px rgba(16, 24, 40, 0.10);
 }
 
-/* ============================================
-   RESET
-   ============================================ */
+/* =========================================================
+   Base Layout
+   Centers forms and keeps nav consistent with app chrome.
+   ========================================================= */
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body.auth-body {
-    font-family: var(--auth-font);
-    background: var(--auth-bg);
     min-height: 100vh;
+    margin: 0;
     display: flex;
     flex-direction: column;
+    background: var(--auth-bg);
+    color: var(--auth-text);
+    font-family: var(--auth-font);
     -webkit-font-smoothing: antialiased;
 }
 
-/* ============================================
-   AUTH NAVBAR - Menu ya juu (rahisi)
-   ============================================ */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+}
+
 .auth-nav {
-    background: var(--auth-primary);
+    min-height: 68px;
     padding: 0 30px;
-    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: #111827;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Logo kwenye navbar */
 .auth-nav-logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    text-decoration: none;
+}
+
+.auth-nav-logo img {
+    height: 52px;
+    width: auto;
 }
 
 .auth-nav-logo-text {
     color: #ffffff;
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 900;
 }
 
-/* Links za navbar */
 .auth-nav-links {
     display: flex;
-    align-items: center;
     gap: 8px;
 }
 
 .auth-nav-link {
-    color: rgba(255,255,255,0.8);
-    padding: 7px 16px;
-    border-radius: var(--auth-btn-radius);
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.78);
     font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
+    font-weight: 800;
 }
 
-.auth-nav-link:hover {
-    color: #ffffff;
-    background: rgba(255,255,255,0.1);
-}
-
+.auth-nav-link:hover,
 .auth-nav-link.active {
-    background: rgba(255,255,255,0.2);
     color: #ffffff;
-    font-weight: 600;
+    background: rgba(255, 255, 255, 0.12);
 }
 
-/* ============================================
-   AUTH CONTAINER - Sehemu kuu ya fomu
-   ============================================ */
 .auth-container {
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
+    display: grid;
+    place-items: center;
+    padding: 42px 18px;
 }
 
-/* ============================================
-   AUTH CARD - Card inayoshikilia fomu
-   ============================================ */
+/* =========================================================
+   Auth Card
+   Shared form shell for all authentication flows.
+   ========================================================= */
 .auth-card {
-    background: var(--auth-card-bg);
-    border-radius: var(--auth-card-radius);
-    box-shadow: var(--auth-card-shadow);
     width: 100%;
     max-width: 480px;
     overflow: hidden;
+    background: var(--auth-surface);
+    border: 1px solid var(--auth-border);
+    border-radius: var(--auth-radius);
+    box-shadow: var(--auth-shadow);
 }
 
-/* Card kubwa zaidi kwa register (ina fields nyingi) */
 .auth-card.wide {
-    max-width: 580px;
+    max-width: 620px;
 }
 
-/* ============================================
-   AUTH HEADER - Juu ya card (icon + title)
-   ============================================ */
 .auth-header {
-    background: var(--auth-gradient);
     padding: 30px;
     text-align: center;
+    background: linear-gradient(135deg, #1d4ed8 0%, #12377f 100%);
 }
 
-/* Icon/emoji kubwa juu ya fomu */
-.auth-header-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    margin: 0 auto 15px auto;
-}
-
-/* Kichwa cha fomu */
 .auth-header-title {
+    margin: 0 0 7px;
     color: #ffffff;
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 6px;
+    font-size: 24px;
+    font-weight: 900;
 }
 
-/* Maelezo chini ya kichwa */
 .auth-header-subtitle {
-    color: rgba(255,255,255,0.7);
+    margin: 0;
+    color: rgba(255, 255, 255, 0.76);
     font-size: 13px;
-    font-weight: 400;
+    line-height: 1.55;
 }
 
-/* ============================================
-   AUTH BODY - Ndani ya card (fomu)
-   ============================================ */
 .auth-body-content {
     padding: 30px;
 }
 
-/* ============================================
-   FORM GROUP - Kila sehemu ya input
-   ============================================ */
+.auth-footer {
+    padding: 18px 30px;
+    text-align: center;
+    background: #f9fafb;
+    border-top: 1px solid var(--auth-border);
+}
+
+.auth-footer-text {
+    margin: 0;
+    color: var(--auth-muted);
+    font-size: 13px;
+}
+
+.auth-footer-link,
+.auth-forgot-link {
+    color: var(--auth-primary);
+    font-weight: 800;
+}
+
+.auth-footer-link:hover,
+.auth-forgot-link:hover {
+    color: var(--auth-primary-dark);
+    text-decoration: underline;
+}
+
+/* =========================================================
+   Forms
+   Inputs, labels, conditional role fields, and validation copy.
+   ========================================================= */
 .auth-form-group {
     margin-bottom: 18px;
 }
 
-/* Label ya input */
-.auth-label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--auth-label-color);
-    margin-bottom: 6px;
+.auth-form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
 }
 
-/* Input field */
-.auth-input {
+.auth-label,
+.auth-conditional-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--auth-text);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.auth-conditional-label {
+    color: var(--auth-primary);
+}
+
+.auth-input,
+.auth-select {
     width: 100%;
-    padding: 11px 14px;
-    border: 1px solid var(--auth-input-border);
-    border-radius: var(--auth-input-radius);
+    padding: 11px 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: var(--auth-text);
     font-size: 14px;
-    font-family: var(--auth-font);
-    color: var(--auth-text-dark);
-    background: var(--auth-input-bg);
-    transition: all 0.2s ease;
     outline: none;
+}
+
+.auth-select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #667085 50%), linear-gradient(135deg, #667085 50%, transparent 50%);
+    background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 38px;
+}
+
+.auth-input:focus,
+.auth-select:focus {
+    border-color: var(--auth-primary);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
 }
 
 .auth-input::placeholder {
-    color: var(--auth-placeholder);
+    color: #98a2b3;
 }
 
-/* Focus state ya input */
-.auth-input:focus {
-    border-color: var(--auth-input-focus);
-    box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
-}
-
-/* Select (dropdown) */
-.auth-select {
-    width: 100%;
-    padding: 11px 14px;
-    border: 1px solid var(--auth-input-border);
-    border-radius: var(--auth-input-radius);
-    font-size: 14px;
-    font-family: var(--auth-font);
-    color: var(--auth-text-dark);
-    background: var(--auth-input-bg);
-    cursor: pointer;
-    outline: none;
-    transition: all 0.2s ease;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23667085' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 40px;
-}
-
-.auth-select:focus {
-    border-color: var(--auth-input-focus);
-    box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
-}
-
-/* Grid ya inputs mbili kwa safu moja */
-.auth-form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-/* ============================================
-   ERROR MESSAGE - Ujumbe wa kosa
-   ============================================ */
 .auth-error {
-    color: var(--auth-error);
+    margin: 5px 0 0;
+    color: var(--auth-danger);
     font-size: 12px;
-    margin-top: 4px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
-/* Alert box (kwa success/error messages) */
-.auth-alert {
-    padding: 12px 16px;
-    border-radius: var(--auth-input-radius);
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.auth-password-hint {
+    margin: 5px 0 0;
+    color: var(--auth-muted);
+    font-size: 12px;
 }
 
-/* Alert ya mafanikio (kijani) */
-.auth-alert-success {
-    background: #ecfdf5;
-    color: #065f46;
-    border: 1px solid #a7f3d0;
-}
-
-/* Alert ya kosa (nyekundu) */
-.auth-alert-error {
-    background: #fef2f2;
-    color: #991b1b;
-    border: 1px solid #fecaca;
-}
-
-/* Alert ya taarifa (bluu) */
-.auth-alert-info {
-    background: #eff6ff;
-    color: #1e40af;
-    border: 1px solid #bfdbfe;
-}
-
-/* ============================================
-   SUBMIT BUTTON - Button ya kutuma fomu
-   ============================================ */
-.auth-btn {
-    width: 100%;
-    padding: 12px;
-    background: var(--auth-btn-bg);
-    color: var(--auth-btn-text);
-    border: none;
-    border-radius: var(--auth-btn-radius);
-    font-size: 15px;
-    font-weight: 600;
-    font-family: var(--auth-font);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 5px;
-}
-
-.auth-btn:hover {
-    background: var(--auth-btn-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
-}
-
-/* ============================================
-   AUTH FOOTER - Chini ya card (links)
-   ============================================ */
-.auth-footer {
-    padding: 18px 30px;
-    text-align: center;
-    border-top: 1px solid #f2f4f7;
-    background: #fafbfc;
-}
-
-.auth-footer-text {
-    font-size: 13px;
-    color: var(--auth-text-light);
-}
-
-.auth-footer-link {
-    color: var(--auth-primary);
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.auth-footer-link:hover {
-    color: var(--auth-primary-hover);
-    text-decoration: underline;
-}
-
-/* ============================================
-   FORGOT PASSWORD LINK
-   ============================================ */
-.auth-forgot-link {
-    display: inline-block;
-    font-size: 13px;
-    color: var(--auth-primary);
-    font-weight: 500;
-    text-decoration: none;
-    margin-bottom: 18px;
-    transition: color 0.2s;
-}
-
-.auth-forgot-link:hover {
-    color: var(--auth-primary-hover);
-    text-decoration: underline;
-}
-
-/* ============================================
-   REMEMBER ME CHECKBOX
-   ============================================ */
-.auth-remember {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.auth-remember label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--auth-text-medium);
-    cursor: pointer;
-}
-
-.auth-remember input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    accent-color: var(--auth-primary);
-    cursor: pointer;
-}
-
-/* ============================================
-   CONDITIONAL FIELDS (Register)
-   Sehemu zinazoonekana kulingana na role
-   ============================================ */
 .auth-conditional {
     display: none;
     margin-bottom: 18px;
     padding: 15px;
-    background: var(--auth-primary-light);
-    border-radius: var(--auth-input-radius);
-    border: 1px solid #c5cae9;
+    border: 1px solid #c7d2fe;
+    border-radius: 8px;
+    background: var(--auth-primary-soft);
 }
 
 .auth-conditional.show {
     display: block;
 }
 
-.auth-conditional-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--auth-primary);
-    margin-bottom: 6px;
-    display: block;
-}
-
-/* ============================================
-   DIVIDER - Mstari wa kutenganisha
-   ============================================ */
-.auth-divider {
+.auth-remember {
     display: flex;
     align-items: center;
-    margin: 20px 0;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
 }
 
-.auth-divider::before,
-.auth-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #e5e7eb;
+.auth-remember label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--auth-muted);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
 }
 
-.auth-divider span {
-    padding: 0 12px;
-    font-size: 12px;
-    color: var(--auth-text-light);
-    font-weight: 500;
+.auth-remember input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--auth-primary);
 }
 
-/* ============================================
-   PASSWORD STRENGTH (Optional)
-   ============================================ */
-.auth-password-hint {
-    font-size: 11px;
-    color: var(--auth-text-light);
-    margin-top: 4px;
+/* =========================================================
+   Actions and Alerts
+   Primary submit button and session feedback messages.
+   ========================================================= */
+.auth-btn {
+    width: 100%;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--auth-primary);
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 900;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* ============================================
-   RESPONSIVE - Muonekano wa simu
-   ============================================ */
+.auth-btn:hover {
+    background: var(--auth-primary-dark);
+    transform: translateY(-1px);
+}
+
+.auth-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.auth-alert-success {
+    color: var(--auth-success);
+    background: #dcfce7;
+    border-color: #bbf7d0;
+}
+
+.auth-alert-error {
+    color: var(--auth-danger);
+    background: #fee2e2;
+    border-color: #fecaca;
+}
+
+.auth-alert-info {
+    color: var(--auth-info);
+    background: #e0f2fe;
+    border-color: #bae6fd;
+}
+
+.auth-link-row {
+    text-align: center;
+}
+
+/* =========================================================
+   Responsive Rules
+   Stacks multi-column forms and keeps nav compact on phones.
+   ========================================================= */
 @media (max-width: 640px) {
+    .auth-nav {
+        padding-inline: 18px;
+    }
+
+    .auth-nav-logo-text {
+        font-size: 17px;
+    }
+
     .auth-container {
-        padding: 20px 15px;
+        padding: 24px 14px;
     }
 
-    .auth-card {
-        border-radius: 12px;
-    }
-
-    .auth-header {
-        padding: 25px 20px;
-    }
-
+    .auth-header,
     .auth-body-content {
-        padding: 25px 20px;
+        padding: 24px 20px;
     }
 
     .auth-form-row {
         grid-template-columns: 1fr;
-    }
-
-    .auth-header-title {
-        font-size: 20px;
-    }
-
-    .auth-footer {
-        padding: 15px 20px;
     }
 }

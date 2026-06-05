@@ -40,7 +40,7 @@ class UserController extends Controller
         $user->update(['status' => 'active']);
 
         return redirect()->route('admin.users.index')
-            ->with('success', "Akaunti ya {$user->first_name} {$user->last_name} imeidhinishwa!");
+            ->with('success', "{$user->first_name} {$user->last_name}'s account has been approved.");
     }
 
     // Reject/Suspend User
@@ -49,7 +49,7 @@ class UserController extends Controller
         $user->update(['status' => 'pending']);
 
         return redirect()->route('admin.users.index')
-            ->with('success', "Akaunti ya {$user->first_name} {$user->last_name} imesimamishwa!");
+            ->with('success', "{$user->first_name} {$user->last_name}'s account has been suspended.");
     }
 
     // Futa User
@@ -58,6 +58,6 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Mtumiaji amefutwa kwa mafanikio!');
+            ->with('success', 'User deleted successfully.');
     }
 }

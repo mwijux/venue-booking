@@ -21,22 +21,27 @@ class ProfileController extends Controller
 
     public function update(Request $request): RedirectResponse
     {
+        $request->merge([
+            'first_name' => Str::upper(Str::squish($request->input('first_name', ''))),
+            'last_name' => Str::upper(Str::squish($request->input('last_name', ''))),
+            'email' => Str::lower(trim($request->input('email', ''))),
+            'phone_number' => trim($request->input('phone_number', '')),
+        ]);
+
         $request->validate([
-            'first_name'    => ['required', 'string', 'max:255'],
-            'last_name'     => ['required', 'string', 'max:255'],
+            'first_name'    => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\pL\s]+$/u'],
+            'last_name'     => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\pL\s]+$/u'],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $request->user()->id],
             'phone_number'  => ['required', 'string', 'size:10', 'unique:users,phone_number,' . $request->user()->id],
         ]);
 
         $request->user()->fill([
-            'first_name'    => Str::title(strtolower($request->first_name)),
-            'last_name'     => Str::title(strtolower($request->last_name)),
-            'email'         => strtolower($request->email),
+            'first_name'    => $request->first_name,
+            'last_name'     => $request->last_name,
+            'email'         => $request->email,
             'phone_number'  => $request->phone_number,
         ]);
 
-        // IMEONDOLEWA: email_verified_at check
-    
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');

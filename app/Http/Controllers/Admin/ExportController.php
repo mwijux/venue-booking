@@ -18,7 +18,7 @@ class ExportController extends Controller
 
         if ($type === 'csv') {
             return $this->exportCsv('users_report.csv', 
-                ['ID', 'Jina', 'Email', 'Simu', 'Role', 'Status', 'Tarehe'],
+                ['ID', 'Name', 'Email', 'Phone', 'Role', 'Status', 'Created At'],
                 $users->map(fn($u) => [
                     $u->id,
                     $u->first_name . ' ' . $u->last_name,
@@ -46,14 +46,14 @@ class ExportController extends Controller
 
         if ($type === 'csv') {
             return $this->exportCsv('bookings_report.csv',
-                ['ID', 'Jina la User', 'Venue', 'Tarehe', 'Muda', 'Lengo', 'Status'],
+                ['ID', 'User', 'Venue', 'Date', 'Time', 'Purpose', 'Status'],
                 $bookings->map(fn($b) => [
                     $b->id,
                     $b->user->first_name . ' ' . $b->user->last_name,
                     $b->venue->name,
                     $b->booking_date->format('d/m/Y'),
                     $b->start_time . ' - ' . $b->end_time,
-                    Str::limit($b->purpose ?? 'Hakuna', 30),
+                    Str::limit($b->purpose ?? 'None', 30),
                     $b->status
                 ])->toArray()
             );
@@ -74,13 +74,13 @@ class ExportController extends Controller
 
         if ($type === 'csv') {
             return $this->exportCsv('venues_report.csv',
-                ['ID', 'Jina', 'Mahali', 'Uwezo', 'Hali'],
+                ['ID', 'Name', 'Location', 'Capacity', 'Status'],
                 $venues->map(fn($v) => [
                     $v->id,
                     $v->name,
                     $v->location,
                     $v->capacity,
-                    $v->is_active ? 'Inatumika' : 'Haifanyi kazi'
+                    $v->is_active ? 'Active' : 'Inactive'
                 ])->toArray()
             );
         }

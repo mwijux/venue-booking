@@ -26,6 +26,6 @@ class BookingController extends Controller
     {
         $booking->update(['status' => 'cancelled']);
         return redirect()->route('admin.bookings.index')
-                         ->with('success', 'Booking imeghairiwa.');
+                         ->with('success', 'Booking has been cancelled.');
     }
 }

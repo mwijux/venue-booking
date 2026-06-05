@@ -40,7 +40,7 @@ class BookingController extends Controller
             $request->start_time,
             $request->end_time
         )) {
-            return back()->with('error', 'Venue hii tayari imebook kwa muda uliouchagua. Tafadhali chagua muda mwingine.')
+            return back()->with('error', 'This venue is already booked for the selected time. Please choose another slot.')
                          ->withInput();
         }
 
@@ -55,7 +55,7 @@ class BookingController extends Controller
         ]);
 
         return redirect()->route('bookings.index')
-                         ->with('success', 'Booking yako imethibitishwa!');
+                         ->with('success', 'Your booking has been confirmed.');
     }
 
     public function show(Booking $booking)
@@ -74,6 +74,6 @@ class BookingController extends Controller
         $booking->update(['status' => 'cancelled']);
 
         return redirect()->route('bookings.index')
-                         ->with('success', 'Booking imeghairiwa.');
+                         ->with('success', 'Your booking has been cancelled.');
     }
 }
